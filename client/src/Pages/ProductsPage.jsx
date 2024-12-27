@@ -2,7 +2,6 @@ import { useState } from "react";
 import FilterBar from "../components/product/FilterBar";
 import ProductGrid from "../components/product/ProductGrid";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import SideFilterBar from "../components/product/SideFilterBar";
 
 
 const ProductsPage = () => {

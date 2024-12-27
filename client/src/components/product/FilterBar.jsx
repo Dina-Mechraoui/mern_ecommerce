@@ -9,7 +9,6 @@ const FilterBar = ({category, setCategory}) => {
 
     return (
         <div>
-            {/* Large Screen Sidebar */}
             <div className="hidden bg-gray-50 h-full lg:flex lg:flex-col p-3 w-80 md:p-14 shadow-md rounded-md">
                 <h1 className="text-lg font-bold border-b-2 p-2 border-[#FF8A3E] w-full mb-4">
                     Filter Options
@@ -36,7 +35,6 @@ const FilterBar = ({category, setCategory}) => {
                 </div>
             </div>
 
-            {/* Mobile Dropdown */}
             <div className="bg-white lg:hidden p-4 rounded-lg shadow-md">
                 <h2 className="text-sm font-semibold mb-4">Filter Options</h2>
                 <TextField
