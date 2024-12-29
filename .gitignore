@@ -18,6 +18,7 @@ client/*.local
 
 # Editor directories and files
 client/.vscode/*
+client/.env
 client/!.vscode/extensions.json
 client/.idea
 client/.DS_Store
