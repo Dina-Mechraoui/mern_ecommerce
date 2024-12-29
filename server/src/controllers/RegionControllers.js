@@ -17,14 +17,12 @@ const addRegion = async (req, res) => {
 const getRegions = async (req, res) => {
   try {
     const regions = await Region.find();
-    console.log(regions)
 
     if (!regions) {
       return res.status(404).json({ message: 'No regions found' });
     }
     res.status(200).json({ regions });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: error.message });
   }
 }

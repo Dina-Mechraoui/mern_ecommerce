@@ -22,12 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000'];
 
-// app.use((req, res, next) => {
-//     console.log('Session ID:', req.sessionID);
-//     console.log('Session Data:', req.session);
-//     next();
-//   });
-
 const options = {
   origin: function(origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1) {

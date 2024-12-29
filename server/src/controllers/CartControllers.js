@@ -38,7 +38,6 @@ const addToCart = async (req, res) => {
 
 const removeFromCart = async (req, res) => {
     const { productId, size, color } = req.body;
-console.log('remove invoked')
 
     if (!productId || !size || !color) {
         return res.status(400).json({ message: 'productId, size, and color are required' });

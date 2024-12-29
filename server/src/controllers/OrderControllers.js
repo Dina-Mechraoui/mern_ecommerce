@@ -3,7 +3,6 @@ import Order from '../models/Order.js'
 const addOrder = async (req, res) => {
     try {
         const { fullName, phone,region,shippingMethod, shippingAddress,totalPrice } = req.body;
-        console.log(req.body)
         if (!req.session.cart || req.session.cart.length === 0) {
             return res.status(400).json({ message: 'Cart is empty' });
         }
@@ -17,7 +16,6 @@ const addOrder = async (req, res) => {
             shippingAddress,
             shippingMethod
         })
-        console.log(newOrder)
         await newOrder.save();
         req.session.cart = [];
         res.status(201).json({ message: 'Order placed successfully' });
