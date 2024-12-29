@@ -3,7 +3,7 @@ import connectDB from './config/db.js';
 import ProductRoutes from './routes/productRoutes.js';
 import OrderRoutes from './routes/orderRoutes.js';
 import sessionMiddleware from './middleware/session.js';
-import CartRoutes from './routes/CartRoutes.js';
+import CartRoutes from './routes/cartRoutes.js';
 import RegionRoutes from './routes/regionRoutes.js';
 import cors from 'cors';
 import morgan from 'morgan';
