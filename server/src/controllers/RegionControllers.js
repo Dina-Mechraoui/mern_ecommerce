@@ -17,6 +17,7 @@ const addRegion = async (req, res) => {
 const getRegions = async (req, res) => {
   try {
     const regions = await Region.find();
+    console.log(regions)
 
     if (!regions) {
       return res.status(404).json({ message: 'No regions found' });

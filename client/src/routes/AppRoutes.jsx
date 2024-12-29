@@ -13,15 +13,17 @@ const AppRoutes = () => {
     return (
     <BrowserRouter>
     <div className="flex flex-col min-h-screen">
-    <NavBar cartItems={cartItems}/>
+      <NavBar cartItems={cartItems}/>
       <ScrollToHash/>
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/:id" element={<ProductDetailsPage />} />
-          <Route path="/cart" element={<CartPage cartItems={cartItems}/>} />
-        </Routes>
+      <main className="flex-grow flex">
+        <div className="flex-grow w-full">
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/:id" element={<ProductDetailsPage />} />
+                <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
+            </Routes>
+        </div>
       </main>
       <Footer />
     </div>

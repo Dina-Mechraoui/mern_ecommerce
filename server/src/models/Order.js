@@ -9,10 +9,9 @@ const OrderSchema = new Schema({
     phone: {type: Number, required: true},
     cart: { type: Array, required: true },
     status: { type: String, enum: ['Pending', 'Shipped', 'Delivered', 'Cancelled'], default: 'Pending' },
-    regionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Region', required: true },
-    shippingMethod: {type: String, enum: ['domicile', 'bureau'], required: true},
-    shippingRate: { type: Number, required: true },
-    shippingAddress: { type: String, required: true }
+    region: { type: String, required: true },
+    shippingMethod: {type: String, enum: ['home', 'desk'], required: true},
+    shippingAddress: { type: String, required: false }
 })
 
 const Order = mongoose.model('Order', OrderSchema)

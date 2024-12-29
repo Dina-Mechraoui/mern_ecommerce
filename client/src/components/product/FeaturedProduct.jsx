@@ -35,7 +35,7 @@ const FeaturedProduct = ({data}) => {
                             <span className="self-end font-bold text-red-500 text-lg">New Price</span>
                         )}
                         <span className={`self-end ${promo ? 'line-through text-sm' : 'font-bold text-xl'}`}>
-                            {data.price} dzd
+                            {data.price} DA
                         </span>
                     </div>
                     <a href={`/${data._id}`}><Button text="SHOP NOW"/></a>

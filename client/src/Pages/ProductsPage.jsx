@@ -6,23 +6,31 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 const ProductsPage = () => {
     const [filter, setFilter] = useState(false)
-    const [category, setCategory] = useState("")
-    console.log(category)
+    const [filters, setFilters] = useState({
+        category: "All",
+      });
+      console.log(filters.category)
+      const handleFilterChange = (name, value) => {
+        setFilters((prevFilters) => ({
+          ...prevFilters,
+          [name]: value,
+        }));
+      };
     return (
         <div className="flex w-full">
             <div className="hidden lg:flex">
-                <FilterBar />
+                <FilterBar filters={filters} onFilterChange={handleFilterChange}/>
             </div>
-            <div className="flex flex-col p-3 md:p-14 gap-8  w-full">
+            <div className="flex flex-col p-3 md:p-14 gap-4  w-full">
                 <div className="flex justify-between border-b-2 p-2 border-[#FF8A3E]">
                     <h1 className="text-lg font-bold">Articles</h1>
                     <button onClick={()=>setFilter(!filter)} className="lg:hidden"><FilterAltIcon/></button>
                 </div>
                 <div className="lg:hidden">
-                    {filter && <FilterBar category={category} setCategory={setCategory}/>}
+                    {filter && <FilterBar filters={filters} onFilterChange={handleFilterChange}/>}
                 </div>
                 
-                <ProductGrid/>
+                <ProductGrid filters={filters}/>
             </div>
         </div>
         

@@ -2,7 +2,6 @@ import Product from "../models/Product.js";
 
 // Add Product
 const addProduct = async (req, res) => {
-    console.log(req.body);
     try {
         const { name, price, stock, description, category, promotion } = req.body;
 
@@ -84,7 +83,6 @@ const updateProduct = async (req, res) => {
         const updateData = { ...req.body };
 
         // Log uploaded files for debugging
-        console.log('Uploaded Files:', req.files);
 
         if (req.files && req.files.length > 0) {
             // Extract URLs from uploaded files
@@ -150,7 +148,6 @@ const getLatestProduct = async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        console.log(product)
         res.status(200).json(product);
         
     } catch (error) {

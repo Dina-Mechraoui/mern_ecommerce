@@ -7,7 +7,6 @@ import useFetch from '../hooks/useFetch'
 
 const HomePage = () => {
     const { data, loading, error } = useFetch('http://localhost:3000/api/product/getLatestProduct')
-    console.log(data)
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return ( 

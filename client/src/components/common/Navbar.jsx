@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Divider from '@mui/material/Divider';
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 const NavBar = ({cartItems}) => {
   const [isOpen, setOpen] = useState(false);
@@ -15,6 +16,9 @@ const NavBar = ({cartItems}) => {
   const location = useLocation(); 
 
   useEffect(() => {
+    if (location.pathname !== "/") {
+      return;
+    }
     const handleScroll = () => {
         const heroSection = document.getElementById("hero-section");
         const heroHeight = heroSection.offsetHeight;
@@ -32,6 +36,20 @@ const NavBar = ({cartItems}) => {
         window.removeEventListener("scroll", handleScroll);
     };
 }, []);
+
+  const { data, loading, error } = useFetch('http://localhost:3000/api/cart/getItemCount')
+  if (loading) {
+    return <div className="flex items-center justify-center h-screen text-xl font-semibold">Loading...</div>;
+  }
+
+  if (error) {
+    return (
+        <div className="flex items-center justify-center h-screen text-xl font-semibold text-red-600">
+            Error: {error.message}
+        </div>
+    );
+  }
+    console.log(data.count)
 
 
 
@@ -53,7 +71,7 @@ const NavBar = ({cartItems}) => {
           <li className={`${location.pathname === "/" ? "font-bold  border-b-2 border-[#FF8A3E]" : ""}`}><a href="/">Home</a></li>
           <li className={`${location.pathname === "/products" ? "font-bold border-b-2 border-[#FF8A3E]" : ""}`}><a href="/products">All products</a></li>
           <li ><Link to="/#contact-us">Contact Us</Link></li>
-          <li className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${cartItems === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{cartItems}</div></a></li>
+          <li className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{data.count}</div></a></li>
         </ul>
       </nav>
 
@@ -65,7 +83,7 @@ const NavBar = ({cartItems}) => {
         <div className="text-center font-AbrilFatface leading-none">
           <h1 className="text-4xl m-0"><a href="/">kl</a></h1>
         </div>
-        <div className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${cartItems === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{cartItems}</div></a></div>
+        <div className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{data.count}</div></a></div>
       </nav>
 
       {isOpen && (
