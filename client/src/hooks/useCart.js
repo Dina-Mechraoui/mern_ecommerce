@@ -11,7 +11,7 @@ const useCart = () => {
         try {
             const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' },
                 body: JSON.stringify(item),
             });
             if (!response.ok) {
@@ -28,7 +28,7 @@ const useCart = () => {
         try {
             const response = await fetch(`${apiUrl}/api/cart/removeFromCart`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', },
                 body: JSON.stringify(item),
                 credentials: 'include'
             });

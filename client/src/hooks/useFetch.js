@@ -9,6 +9,7 @@ const useFetch = (url) => {
         const fetchData = async () => {
             try {
                 const response = await fetch(url, {
+                    headers: {'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app'},
                     credentials: 'include'
                 });
                 const result = await response.json();

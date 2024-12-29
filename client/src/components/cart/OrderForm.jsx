@@ -58,7 +58,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${apiUrl}/api/order/addOrder`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' },
         body: JSON.stringify({
           ...formData,
           totalPrice
