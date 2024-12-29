@@ -3,7 +3,8 @@ import useFetch from '../../hooks/useFetch';
 import useCart from "../../hooks/useCart"
 import CloseIcon from '@mui/icons-material/Close';
 const CartItem = ({cartItem}) => {
-    const {data, loading, error} = useFetch(`http://localhost:3000/api/product/getProduct/${cartItem.productId}`);
+    const apiUrl = process.env.REACT_APP_API_URL;
+    const {data, loading, error} = useFetch(`${apiUrl}/api/product/getProduct/${cartItem.productId}`);
     const {removeFromCart} = useCart()
     const handleClick = ()=>{
         console.log('here')

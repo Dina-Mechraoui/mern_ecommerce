@@ -4,11 +4,12 @@ const useCart = () => {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const apiUrl = process.env.REACT_APP_API_URL;
+
 
     const addToCart = async (item) => {
-        console.log('got here')
         try {
-            const response = await fetch("http://localhost:3000/api/cart/addToCart", {
+            const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),
@@ -25,7 +26,7 @@ const useCart = () => {
 
     const removeFromCart = async (item) => {
         try {
-            const response = await fetch("http://localhost:3000/api/cart/removeFromCart", {
+            const response = await fetch(`${apiUrl}/api/cart/removeFromCart`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(item),

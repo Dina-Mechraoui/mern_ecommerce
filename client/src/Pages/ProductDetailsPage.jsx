@@ -5,8 +5,10 @@ import useCart from "../hooks/useCart";
 import Button from "../components/common/Button";
 
 const ProductDetailsPage = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const { id } = useParams();
-  const { data, loading, error } = useFetch(`http://localhost:3000/api/product/getProduct/${id}`);
+  const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
   const { addToCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
@@ -93,7 +95,7 @@ const ProductDetailsPage = () => {
     console.log("Cart Item Payload:", cartItem);
   
     try {
-      const response = await fetch("http://localhost:3000/api/cart/addToCart", {
+      const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cartItem),

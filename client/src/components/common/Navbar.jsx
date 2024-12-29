@@ -14,6 +14,7 @@ const NavBar = ({cartItems}) => {
   const [isOpen, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); 
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -37,7 +38,7 @@ const NavBar = ({cartItems}) => {
     };
 }, []);
 
-  const { data, loading, error } = useFetch('http://localhost:3000/api/cart/getItemCount')
+  const { data, loading, error } = useFetch(`${apiUrl}/api/cart/getItemCount`)
   if (loading) {
     return <div className="flex items-center justify-center h-screen text-xl font-semibold">Loading...</div>;
   }

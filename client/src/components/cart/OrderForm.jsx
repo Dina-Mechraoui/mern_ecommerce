@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const OrderPopup = ({ cartItems, price, onClose }) => {
+const apiUrl = process.env.REACT_APP_API_URL;
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -20,7 +21,7 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
 
   const [errorx, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { data, loading, error } = useFetch('http://localhost:3000/api/region/getRegions');
+  const { data, loading, error } = useFetch(`${apiUrl}/api/region/getRegions`);
 
   if (loading) {
     return <div className="flex items-center justify-center h-screen text-xl font-semibold">Loading...</div>;
@@ -36,7 +37,6 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
 
   const regions = data?.regions || [];
   
-  // Efficient calculation of totalPrice
   const selectedRegion = regions.find(region => region.name === formData.region);
   const selectedShippingRate = selectedRegion?.shippingRate.find(rate => rate.type === formData.shippingMethod);
 
@@ -56,7 +56,7 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:3000/api/order/addOrder', {
+      const response = await fetch(`${apiUrl}/api/order/addOrder`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -67,7 +67,7 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
       });
       const data = await response.json();
       if (response.ok) {
-        onClose(); // Close the popup
+        onClose(); 
         window.location.reload();
       } else {
         setError(data.message || 'An error occurred');

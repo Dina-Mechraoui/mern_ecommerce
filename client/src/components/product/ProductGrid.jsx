@@ -3,7 +3,8 @@ import ProductCard from "./ProductCard";
 import useFetch from '../../hooks/useFetch'
 
 const ProductGrid = ({filters}) => {
-  const { data, loading, error } = useFetch('http://localhost:3000/api/product/getProducts');
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProducts`);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   const filteredProducts = data
