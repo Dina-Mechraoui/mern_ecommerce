@@ -49,6 +49,7 @@ const options = {
 app.use(cors(options));
 app.use(sessionMiddleware);
 app.get('/test-session', (req, res) => {
+  console.log('test-session')
   if (!req.session.views) {
     req.session.views = 1;
   } else {
