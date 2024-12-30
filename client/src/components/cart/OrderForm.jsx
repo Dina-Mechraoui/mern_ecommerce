@@ -21,7 +21,7 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
 
   const [errorx, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { data, loading, error } = useFetch(`${apiUrl}/api/region/getRegions`);
+  const { data, loading, error } = useFetch(`/region/getRegions`);
 
   if (loading) {
     return <div className="flex items-center justify-center h-screen text-xl font-semibold">Loading...</div>;
@@ -56,7 +56,7 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${apiUrl}/api/order/addOrder`, {
+      const response = await fetch(`/order/addOrder`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' },
         body: JSON.stringify({

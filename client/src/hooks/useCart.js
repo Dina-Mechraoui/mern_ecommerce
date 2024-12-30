@@ -9,7 +9,7 @@ const useCart = () => {
 
     const addToCart = async (item) => {
         try {
-            const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
+            const response = await fetch(`/cart/addToCart`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", 
                     // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' 
@@ -29,7 +29,7 @@ const useCart = () => {
 
     const removeFromCart = async (item) => {
         try {
-            const response = await fetch(`${apiUrl}/api/cart/removeFromCart`, {
+            const response = await fetch(`/cart/removeFromCart`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json",
                     // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', 

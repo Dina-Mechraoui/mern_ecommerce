@@ -7,9 +7,8 @@ import useFetch from '../hooks/useFetch'
 
 const HomePage = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
-    console.log(apiUrl)
 
-    const { data, loading, error } = useFetch(`${apiUrl}/api/product/getLatestProduct`)
+    const { data, loading, error } = useFetch(`/product/getLatestProduct`)
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return ( 

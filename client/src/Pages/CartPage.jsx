@@ -7,7 +7,7 @@ import OrderPopup from "../components/cart/OrderForm";
 const CartPage = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    const { data, loading, error } = useFetch(`${apiUrl}/api/cart/getCart`);
+    const { data, loading, error } = useFetch(`/cart/getCart`);
     const [popup, openPopup] = useState(false)
 
     const proceedWithOrder = () => {

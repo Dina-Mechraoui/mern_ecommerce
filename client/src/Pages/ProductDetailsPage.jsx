@@ -8,7 +8,7 @@ const ProductDetailsPage = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const { id } = useParams();
-  const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
+  const { data, loading, error } = useFetch(`/product/getProduct/${id}`);
   const { addToCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
@@ -95,7 +95,7 @@ const ProductDetailsPage = () => {
     console.log("Cart Item Payload:", cartItem);
   
     try {
-      const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
+      const response = await fetch(`/cart/addToCart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cartItem),
