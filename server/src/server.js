@@ -52,7 +52,14 @@ app.use(cors(corsOptions)); // Enable CORS
 // Session Middleware
 app.use(sessionMiddleware);
 
-// Custom Headers
+// Routes
+app.use('/api/product', ProductRoutes);
+app.use('/api/cart', CartRoutes);
+app.use('/api/order', OrderRoutes);
+app.use('/api/region', RegionRoutes);
+app.use('/api/admin', AdminRoutes);
+
+// Custom Headers Middleware should come after all route handlers
 app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy', "default-src 'self' https://kl-collection.vercel.app");
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
@@ -60,13 +67,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
-
-// Routes
-app.use('/api/product', ProductRoutes);
-app.use('/api/cart', CartRoutes);
-app.use('/api/order', OrderRoutes);
-app.use('/api/region', RegionRoutes);
-app.use('/api/admin', AdminRoutes);
 
 // Error Handling Middleware (Must be last)
 app.use((err, req, res, next) => {
