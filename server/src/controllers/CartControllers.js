@@ -4,28 +4,48 @@ const getCart = async (req, res) => {
 };
 
 const addToCart = async (req, res) => {
-    console.log('add to cart invoked')
+    console.log('addToCart invoked');
+    
+    // Destructuring the request body
     const { productId, size, color, quantity, price } = req.body;
+    console.log('Received data:', { productId, size, color, quantity, price });
 
+    // Check for missing fields
     if (!productId || !size || !color || !quantity) {
+        console.log('Error: Missing required fields');
         return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const cartItem = { productId, size, color, quantity, price};
+    // Creating the cart item
+    const cartItem = { productId, size, color, quantity, price };
+    console.log('Cart item created:', cartItem);
 
+    // Initialize session cart if not already present
     if (!req.session.cart) {
+        console.log('Initializing new cart');
         req.session.cart = [];
+    } else {
+        console.log('Cart already exists:', req.session.cart);
     }
 
+    // Check if the item already exists in the cart
     const existingItemIndex = req.session.cart.findIndex(item => 
         item.productId === productId && item.size === size && item.color === color
     );
+    console.log('Existing item index:', existingItemIndex);
 
+    // If item exists, update the quantity, otherwise add a new item
     if (existingItemIndex > -1) {
+        console.log('Item found in cart, updating quantity');
         req.session.cart[existingItemIndex].quantity += quantity;
     } else {
+        console.log('Item not found in cart, adding new item');
         req.session.cart.push(cartItem);
     }
+
+    console.log('Updated cart:', req.session.cart);
+
+    // Respond with updated cart
     res.json({ message: 'Item added to cart', cart: req.session.cart });
 };
 
