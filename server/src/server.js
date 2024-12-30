@@ -56,21 +56,6 @@ app.use('/api/order', OrderRoutes);
 app.use('/api/region', RegionRoutes);
 app.use('/api/admin', AdminRoutes);
 
-app.use((err, req, res, next) => {
-  // Log the error stack for debugging
-  console.error(err.stack);
-  
-  // Safely check if the session exists before debugging it
-  if (req.session) {
-      console.log('Session:', req.session);
-  } else {
-      console.log('Session: No session data available');
-  }
-
-  // Respond with a 500 status and an error message
-  res.status(500).json({ message: 'Something went wrong!' });
-});
-
 
 // Server
 app.listen(PORT, () => {
