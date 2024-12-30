@@ -48,14 +48,9 @@ const options = {
 
 app.use(cors(options));
 app.use(sessionMiddleware);
-app.get('/test-session', (req, res) => {
-  console.log('test-session')
-  if (!req.session.views) {
-    req.session.views = 1;
-  } else {
-    req.session.views++;
-  }
-  res.send(`You've visited this page ${req.session.views} times`);
+app.use((req, res, next) => {
+  debug('Session:', req.session);
+  next();
 });
 
 
