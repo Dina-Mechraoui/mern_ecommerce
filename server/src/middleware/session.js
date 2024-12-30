@@ -6,6 +6,7 @@ const sessionMiddleware = session({
         mongoUrl: process.env.DATABASE_URL,
         collectionName: "sessions", 
         ttl: 14 * 24 * 60 * 60, 
+        debug: true,
     }),
     secret: process.env.SESSION_SECRET, 
     resave: false,

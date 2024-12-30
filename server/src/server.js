@@ -26,6 +26,8 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev')); // Logging for development mode
 }
 app.use(helmet()); // Security headers
+// Trust the first proxy (render or any other reverse proxy)
+app.set('trust proxy', 1);
 
 // CORS Configuration
 const allowedOrigins = [
