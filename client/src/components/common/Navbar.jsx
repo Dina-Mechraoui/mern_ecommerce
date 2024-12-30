@@ -38,7 +38,7 @@ const NavBar = () => {
     };
 }, []);
 
-  const { data, loading, error } = useFetch(`/cart/getItemCount`)
+  const { data, loading, error } = useFetch(`${apiUrl}/api/cart/getItemCount`)
   if (loading) {
     return <div className="flex items-center justify-center h-screen text-xl font-semibold">Loading...</div>;
   }
