@@ -28,13 +28,14 @@ app.use(helmet());
 const allowedOrigins = ['https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', 'https://kl-collection.vercel.app/', 'http://localhost:5173/'];
 
 const options = {
-  origin: function(origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  // origin: function(origin, callback) {
+  //   if (allowedOrigins.indexOf(origin) !== -1) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error('Not allowed by CORS'));
+  //   }
+  // },
+  origin: '*',
   credentials: true,
 };
 
