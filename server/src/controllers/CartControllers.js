@@ -43,7 +43,7 @@ const addToCart = async (req, res) => {
         console.log('Item not found in cart, adding new item');
         req.session.cart.push(cartItem);
     }
-
+    console.log('Session ID:', req.sessionID);
     // Log the updated cart before sending the response
     console.log('Updated cart:', req.session.cart);
 
