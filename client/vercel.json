@@ -1,23 +1,19 @@
-
-  {
-    "version": 2,
-    "builds": [
-      {
-        "src": "frontend/**",
-        "use": "@vercel/static"
-      }
-    ],
-    "proxies": [
-      {
-        "src": "/api/(.*)",
-        "dest": "https://klcollection-backend.onrender.com/api/$1"
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
-      }
-    ]
-  }
-  
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://klcollection-backend.onrender.com/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
