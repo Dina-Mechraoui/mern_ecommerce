@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 app.use(helmet());
-const allowedOrigins = ['https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app'];
+const allowedOrigins = ['https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', 'https://kl-collection.vercel.app/', 'http://localhost:5173/'];
 
 const options = {
   origin: function(origin, callback) {
