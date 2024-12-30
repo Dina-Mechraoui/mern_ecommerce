@@ -1,8 +1,10 @@
 const getCart = async (req, res) => {
+    console.log('got cart')
     res.json({ cart: req.session.cart || [] });
 };
 
 const addToCart = async (req, res) => {
+    console.log('add to cart invoked')
     const { productId, size, color, quantity, price } = req.body;
 
     if (!productId || !size || !color || !quantity) {
