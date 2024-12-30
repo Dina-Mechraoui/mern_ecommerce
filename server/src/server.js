@@ -60,13 +60,13 @@ app.use('/api/region', RegionRoutes);
 app.use('/api/admin', AdminRoutes);
 
 // Custom Headers Middleware should come after all route handlers
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "default-src 'self' https://kl-collection.vercel.app");
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  res.setHeader('Access-Control-Allow-Origin', 'https://kl-collection.vercel.app');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Content-Security-Policy', "default-src 'self' https://kl-collection.vercel.app");
+//   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+//   res.setHeader('Access-Control-Allow-Origin', 'https://kl-collection.vercel.app');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
 
 // Error Handling Middleware (Must be last)
 app.use((err, req, res, next) => {
