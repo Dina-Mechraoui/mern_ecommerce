@@ -97,7 +97,7 @@ const ProductDetailsPage = () => {
     try {
       const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cartItem),
         credentials: "include",
       });
