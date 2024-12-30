@@ -11,7 +11,6 @@ const getCart = async (req, res) => {
 };
 
 const addToCart = async (req, res) => {
-    
     // Destructuring the request body
     const { productId, size, color, quantity, price } = req.body;
 
@@ -34,26 +33,24 @@ const addToCart = async (req, res) => {
     const existingItemIndex = req.session.cart.findIndex(item => 
         item.productId === productId && item.size === size && item.color === color
     );
-      // Safely check if the session exists before debugging it
-  if (req.session) {
-        console.log('Session:', req.session);
-    } else {
-        console.log('Session: No session data available');
-    }
-    res.json({ cart: req.session.cart || [] });
-    
 
     if (existingItemIndex > -1) {
+        // If the item exists, increase the quantity
         req.session.cart[existingItemIndex].quantity += quantity;
+        console.log('Updated item in cart:', req.session.cart[existingItemIndex]);
     } else {
+        // If the item doesn't exist, add a new item to the cart
         console.log('Item not found in cart, adding new item');
-        console.log('Session before adding item:', req.session);
         req.session.cart.push(cartItem);
-        console.log('Session after adding item:', req.session);
-
     }
 
+    // Log the updated cart before sending the response
+    console.log('Updated cart:', req.session.cart);
+
+    // Respond with the updated cart
+    return res.json({ message: 'Item added to cart', cart: req.session.cart });
 };
+
 
     const getItemsCount = async (req, res) => {
         const cart = req.session.cart || [];
