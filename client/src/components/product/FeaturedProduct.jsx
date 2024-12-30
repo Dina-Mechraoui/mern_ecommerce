@@ -3,7 +3,7 @@ import Button from '../common/Button';
 
 const FeaturedProduct = ({data}) => {
     const [outOfStock, setOutOfStock] = useState(false);
-    const [promo, setPromo] = useState(true);
+    const [promo, setPromo] = useState(false);
 
     return (
         <div className="flex flex-col md:flex-row gap-8 md:w-full justify-center lg:gap-24">
