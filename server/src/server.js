@@ -34,7 +34,12 @@ const allowedOrigins = [
   'https://kl-collection.vercel.app',
   'https://kl-collection-git-main-dina-mechraouis-projects.vercel.app',
   'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app',
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'https://vercel.com/dina-mechraouis-projects/kl-collection/8tknHtaiVU4DFoZyXXRepPkWNKZg',
+  'https://kl-collection.vercel.app/',
+  'https://kl-collection-dina-mechraouis-projects.vercel.app/',
+  'https://kl-collection-git-main-dina-mechraouis-projects.vercel.app/'
+
 ];
 
 const corsOptions = {
