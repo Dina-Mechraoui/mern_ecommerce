@@ -66,12 +66,14 @@ app.listen(PORT, () => {
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
-    console.log('Closing server...');
-    await mongoose.disconnect();
-    process.exit(0);
+  console.log('Received SIGINT. Closing server...');
+  await mongoose.disconnect();
+  process.exit(0);
 });
+
 process.on('SIGTERM', async () => {
-    console.log('Closing server...');
-    await mongoose.disconnect();
-    process.exit(0);
+  console.log('Received SIGTERM. Closing server...');
+  await mongoose.disconnect();
+  process.exit(0);
 });
+
