@@ -9,11 +9,10 @@ import CartPage from '../Pages/CartPage';
 import ProductDetailsPage from '../Pages/ProductDetailsPage';
 
 const AppRoutes = () => {
-    const [cartItems, setCartItems] = useState(4)
     return (
     <BrowserRouter>
     <div className="flex flex-col min-h-screen">
-      <NavBar cartItems={cartItems}/>
+      <NavBar/>
       <ScrollToHash/>
       <main className="flex-grow flex">
         <div className="flex-grow w-full">

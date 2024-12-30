@@ -10,11 +10,11 @@ import Divider from '@mui/material/Divider';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-const NavBar = ({cartItems}) => {
+const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); 
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -50,11 +50,6 @@ const NavBar = ({cartItems}) => {
         </div>
     );
   }
-    console.log(data.count)
-
-
-
-
   return (
     <>
       {/* Desktop Navbar */}

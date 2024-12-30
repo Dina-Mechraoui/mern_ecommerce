@@ -5,7 +5,6 @@ import Button from '../common/Button';
 const ProductCard = ({data}) => {
     const [outOfStock, setOutOfStock] = useState(false)
     const [promo, setPromo] = useState(false)
-    console.log(data)
 
     return (
         <a href={`/${data._id}`}>

@@ -3,23 +3,18 @@ import ProductCard from "./ProductCard";
 import useFetch from '../../hooks/useFetch'
 
 const ProductGrid = ({filters}) => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProducts`);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   const filteredProducts = data
   ? data.filter((product) => {
-      console.log('grid',filters.category)
       if (filters?.category === "All") {
         return true;
       }
       return product.category === filters?.category;
     })
   : [];
-  console.log(data)
-
-
-
 
     return ( 
       <div className="grid grid-cols-2 items-center justify-center sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-2 mb-4 w-full ">

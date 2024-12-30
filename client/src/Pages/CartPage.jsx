@@ -5,7 +5,7 @@ import {useState} from 'react'
 import OrderPopup from "../components/cart/OrderForm";
 
 const CartPage = () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const { data, loading, error } = useFetch(`${apiUrl}/api/cart/getCart`);
     const [popup, openPopup] = useState(false)

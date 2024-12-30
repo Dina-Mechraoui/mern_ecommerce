@@ -4,14 +4,17 @@ const useCart = () => {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
 
     const addToCart = async (item) => {
         try {
             const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json", 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' },
+                headers: { "Content-Type": "application/json", 
+                    // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' 
+                     },
+
                 body: JSON.stringify(item),
             });
             if (!response.ok) {
@@ -28,7 +31,9 @@ const useCart = () => {
         try {
             const response = await fetch(`${apiUrl}/api/cart/removeFromCart`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json",'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', },
+                headers: { "Content-Type": "application/json",
+                    // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', 
+                    },
                 body: JSON.stringify(item),
                 credentials: 'include'
             });

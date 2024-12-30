@@ -1,6 +1,7 @@
 server/node_modules/
 server/.env
 server/src/createAdmin.js
+client/.env
 
 # Logs
 client/logs
@@ -18,7 +19,6 @@ client/*.local
 
 # Editor directories and files
 client/.vscode/*
-client/.env
 client/!.vscode/extensions.json
 client/.idea
 client/.DS_Store

@@ -5,7 +5,7 @@ import useCart from "../hooks/useCart";
 import Button from "../components/common/Button";
 
 const ProductDetailsPage = () => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);

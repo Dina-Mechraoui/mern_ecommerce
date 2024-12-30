@@ -10,7 +10,7 @@ import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const OrderPopup = ({ cartItems, price, onClose }) => {
-const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',

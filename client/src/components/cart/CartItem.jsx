@@ -3,20 +3,16 @@ import useFetch from '../../hooks/useFetch';
 import useCart from "../../hooks/useCart"
 import CloseIcon from '@mui/icons-material/Close';
 const CartItem = ({cartItem}) => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
     const {data, loading, error} = useFetch(`${apiUrl}/api/product/getProduct/${cartItem.productId}`);
     const {removeFromCart} = useCart()
     const handleClick = ()=>{
-        console.log('here')
         const item = {
             productId: cartItem.productId,
             size: cartItem.size,
             color: cartItem.color,
         } 
-        console.log('here') 
         removeFromCart(item)
-        
-
     }
     if (loading) {
         return <div>Loading...</div>;

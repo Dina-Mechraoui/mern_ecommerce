@@ -6,7 +6,8 @@ import FeaturedProduct from '../components/product/FeaturedProduct';
 import useFetch from '../hooks/useFetch'
 
 const HomePage = () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
+    console.log(apiUrl)
 
     const { data, loading, error } = useFetch(`${apiUrl}/api/product/getLatestProduct`)
     if (loading) return <p>Loading...</p>;
