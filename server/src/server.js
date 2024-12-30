@@ -48,6 +48,15 @@ const options = {
 
 app.use(cors(options));
 app.use(sessionMiddleware);
+app.get('/test-session', (req, res) => {
+  if (!req.session.views) {
+    req.session.views = 1;
+  } else {
+    req.session.views++;
+  }
+  res.send(`You've visited this page ${req.session.views} times`);
+});
+
 
 app.use('/api/product', ProductRoutes);
 app.use('/api/cart', CartRoutes);
