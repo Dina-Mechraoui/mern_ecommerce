@@ -107,7 +107,8 @@ const ProductDetailsPage = () => {
       if (!response.ok) throw new Error("Failed to add to cart");
   
       const result = await response.json();
-window.location.reload()
+      console.log(result)
+// window.location.reload()
   
     } catch (error) {
       console.error("Error adding to cart:", error);
