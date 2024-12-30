@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --production=false",
+    "build": "vite build",
     "render-postbuild": "npm install && npm run build",
     "lint": "eslint .",
     "preview": "vite preview"
