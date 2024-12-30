@@ -1,6 +1,5 @@
 const getCart = async (req, res) => {
     console.log('got cart')
-    console.error(err.stack);
   
   // Safely check if the session exists before debugging it
   if (req.session) {
