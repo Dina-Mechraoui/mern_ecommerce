@@ -53,17 +53,6 @@ const addToCart = async (req, res) => {
 
     }
 
-    console.log('Updated cart:', req.session.cart);
-      // Safely check if the session exists before debugging it
-  if (req.session) {
-    console.log('Session:', req.session);
-} else {
-    console.log('Session: No session data available');
-}
-  res.json({ cart: req.session.cart || [] });
-
-    // Respond with updated cart
-    res.json({ message: 'Item added to cart', cart: req.session.cart });
 };
 
     const getItemsCount = async (req, res) => {
