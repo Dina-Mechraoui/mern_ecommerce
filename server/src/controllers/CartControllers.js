@@ -40,7 +40,10 @@ const addToCart = async (req, res) => {
         req.session.cart[existingItemIndex].quantity += quantity;
     } else {
         console.log('Item not found in cart, adding new item');
+        console.log('Session before adding item:', req.session);
         req.session.cart.push(cartItem);
+        console.log('Session after adding item:', req.session);
+
     }
 
     console.log('Updated cart:', req.session.cart);
