@@ -12,7 +12,7 @@ const ManageOrders = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/orders`, {
+      const response = await fetch(`${apiUrl}/api/order/getOrders`, {
         headers: {
           'Authorization': `Bearer ${adminToken}`,
         },
