@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes'; // Main user routes
 import AdminRoutes from './routes/AdminRoutes'; // Admin routes
 import Layout from './routes/Layout';
-import { CartProvider } from './contexts/CartContext';
+import CartProvider from './contexts/CartContext';
 
 function App() {
   return (

@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Divider from '@mui/material/Divider';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { useCartContext } from "../../contexts/CartContext";
+import useCartContext from "../../hooks/useCartContext";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);

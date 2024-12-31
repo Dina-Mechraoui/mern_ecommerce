@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 // Create the context
 const CartContext = createContext();
 
-// Provider component
-export const CartProvider = ({ children }) => {
-  const [cartCount, setCartCount] = useState();
+// Combined component for the provider and the custom hook
+const CartProvider = ({ children }) => {
+  const [cartCount, setCartCount] = useState(0);
 
   return (
     <CartContext.Provider value={{ cartCount, setCartCount }}>
@@ -13,17 +13,6 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-// Custom hook to use the context
-export const useCartContext = () => {
-  const context = useContext(CartContext);
-
-  if (!context) {
-    throw new Error("useCartContext must be used within a CartProvider");
-  }
-
-  return context;
-};
-
-export { CartProvider, useCartContext };
+export default CartProvider;
+export {CartContext}
 
