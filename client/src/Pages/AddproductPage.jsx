@@ -70,7 +70,7 @@ const AddProductPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app',
+          'Origin': 'https://kl-collection.vercel.app',
           'Authorization': `${adminToken}`
         },
         body: JSON.stringify(productData), // Send data as JSON
