@@ -30,7 +30,7 @@ const AdminProductsPage = () => {
       ],
     },
   ];
-  console.log(localStorage.getItem("adminToken", data.token))
+  console.log(localStorage.getItem('adminToken'))
 
 
   return (
