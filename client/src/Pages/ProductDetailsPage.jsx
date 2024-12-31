@@ -144,7 +144,7 @@ const ProductDetailsPage = () => {
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
     incrementCart()
-    window.localStorage.reload()
+    window.location.reload()
   };
   
   
