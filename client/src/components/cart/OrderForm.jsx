@@ -76,8 +76,9 @@ const OrderPopup = ({ price, onClose }) => {
       });
       const data = await response.json();
       if (response.ok) {
+        localStorage.removeItem('cart');
         onClose(); 
-        window.location.reload(); // Reload the page to reflect the order
+        window.location.reload();
       } else {
         setError(data.message || 'An error occurred');
       }

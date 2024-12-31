@@ -82,7 +82,6 @@ const CartPage = () => {
     const [cartData, setCartData] = useState([]);
     const [popup, openPopup] = useState(false);
 
-    // Get cart from localStorage on component mount
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         setCartData(cart);
