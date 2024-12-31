@@ -2,7 +2,7 @@ import Order from '../models/Order.js'
 
 const addOrder = async (req, res) => {
     try {
-        const { fullName, phone,region,shippingMethod, shippingAddress,totalPrice } = req.body;
+        const { fullName, phone,region, cart,shippingMethod, shippingAddress,totalPrice } = req.body;
         if (!req.session.cart || req.session.cart.length === 0) {
             return res.status(400).json({ message: 'Cart is empty' });
         }
