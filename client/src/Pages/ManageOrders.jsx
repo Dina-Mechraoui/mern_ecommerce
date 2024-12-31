@@ -21,7 +21,7 @@ const ManageOrders = () => {
         throw new Error("Failed to fetch orders");
       }
       const data = await response.json();
-      console.log(data[1])
+      console.log(data.cart)
       setOrders(data);
     } catch (err) {
       setError(err.message);
