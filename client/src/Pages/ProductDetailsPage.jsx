@@ -82,39 +82,6 @@ const ProductDetailsPage = () => {
   const options = getAvailableOptions(data, selectedSize, selectedColor);
   const { sizes, colors, maxQuantity } = options;
 
-  // const handleAddToCart = async () => {
-  //   console.log("Button clicked");
-  //   const cartItem = {
-  //     productId: data._id,
-  //     size: selectedSize,
-  //     color: selectedColor,
-  //     quantity: Number(quantity),
-  //     price: data.price,
-  //   };
-  
-  //   console.log("Cart Item Payload:", cartItem);
-  
-  //   try {
-  //     const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(cartItem),
-  //       credentials: "include",
-  //     });
-  
-  //     console.log("Response:", response);
-  
-  //     if (!response.ok) throw new Error("Failed to add to cart");
-  
-  //     const result = await response.json();
-  //     console.log(result)
-  //   // window.location.reload()
-  
-  //   } catch (error) {
-  //     console.error("Error adding to cart:", error);
-  //   }
-  // };
-  
   const handleAddToCart = () => {
     // Retrieve current cart from localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];

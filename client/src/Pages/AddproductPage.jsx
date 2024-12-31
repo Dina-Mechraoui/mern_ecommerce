@@ -94,7 +94,8 @@ const AddProductPage = () => {
       if (!response.ok) {
         throw new Error('Failed to add product');
       }
-  
+      alert('product added successfully')
+      window.location.reload()
       // Handle success (e.g., redirect or show success message)
     } catch (error) {
       setError('Error adding product: ' + error.message);
