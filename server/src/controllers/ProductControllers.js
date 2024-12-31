@@ -19,6 +19,16 @@ const addProduct = async (req, res) => {
             console.log("No files received.");
         }
 
+        // Parse the stock field if it's a string (e.g., if it's received as a stringified array)
+        let parsedStock = [];
+        if (stock) {
+            try {
+                parsedStock = JSON.parse(stock); // This will convert the stringified stock into an array
+            } catch (error) {
+                console.error("Error parsing stock:", error.message);
+            }
+        }
+
         // Log the image links that were generated
         console.log("Image links:", imageLinks);
 
@@ -26,7 +36,7 @@ const addProduct = async (req, res) => {
         const newProduct = new Product({
             name,
             price,
-            stock,
+            stock: parsedStock, // Use the parsed stock array
             description,
             category,
             promotion,
@@ -52,6 +62,7 @@ const addProduct = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 
 
