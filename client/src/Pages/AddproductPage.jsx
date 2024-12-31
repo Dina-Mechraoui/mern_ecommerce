@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 const AddProductPage = () => {
   const [productData, setProductData] = useState({
     name: '',
-    price: '',
+    price: 0,
     description: '',
     category: 'robe', // default category
-    stock: [{ size: '', color: '', quantity: '' }],
+    stock: [{ size: '', color: '', quantity: 0 }],
     images: [],
     promotion: {
       discountPercentage: '',
