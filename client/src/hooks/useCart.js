@@ -5,14 +5,12 @@ const useCart = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const apiUrl = import.meta.env.VITE_API_URL;
-    console.log(apiUrl)
 
     const addToCart = async (item) => {
         try {
             const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", 
-                    // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' 
                      },
 
                 body: JSON.stringify(item),
@@ -32,7 +30,6 @@ const useCart = () => {
             const response = await fetch(`${apiUrl}/api/cart/removeFromCart`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json",
-                    // 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app', 
                     },
                 body: JSON.stringify(item),
                 credentials: 'include'

@@ -10,8 +10,7 @@ import ProductDetailsPage from '../Pages/ProductDetailsPage';
 
 const AppRoutes = () => {
     return (
-    <BrowserRouter>
-    <div className="flex flex-col min-h-screen">
+    <>
       <NavBar/>
       <ScrollToHash/>
       <main className="flex-grow flex">
@@ -25,8 +24,7 @@ const AppRoutes = () => {
         </div>
       </main>
       <Footer />
-    </div>
-    </BrowserRouter>
+    </>
   );
 };
 
