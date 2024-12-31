@@ -3,15 +3,16 @@ import React, { createContext, useState } from "react";
 // Create the context
 const CartContext = createContext();
 
-// Combined component for the provider and the custom hook
+// CartProvider component
 const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
 
   return (
     <CartContext.Provider value={{ cartCount, setCartCount }}>
-      {children}
+      {children}  {/* Ensure that children are properly passed */}
     </CartContext.Provider>
   );
 };
-export default CartProvider;
 
+// Export CartContext and CartProvider
+export { CartContext, CartProvider };
