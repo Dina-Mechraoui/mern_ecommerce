@@ -21,12 +21,6 @@ const ProductSchema = new Schema({
     images: {
         type: [String], 
         required: false,
-        validate: {
-            validator: function(v) {
-                return v.length > 0; 
-            },
-            message: 'At least one image URL is required'
-        }
     },
 
     promotion: {
