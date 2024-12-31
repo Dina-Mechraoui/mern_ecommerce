@@ -10,7 +10,7 @@ const ProductDetailsPage = () => {
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
 
-  const { cartCount, setCartCount } = useCartContext();
+  const {setCartCount } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);

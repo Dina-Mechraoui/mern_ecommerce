@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     return (
       <div className="flex flex-col min-h-screen">
             
-        {!isAdminRoute && <NavBar cartCount={cartCount}/>}
+        {!isAdminRoute && <NavBar/>}
         {!isAdminRoute && <ScrollToHash/>}
         <main className="flex-grow">{children}</main>
         {!isAdminRoute && <Footer />}
