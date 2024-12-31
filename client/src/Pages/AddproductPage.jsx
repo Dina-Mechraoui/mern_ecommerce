@@ -17,6 +17,7 @@ const AddProductPage = () => {
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const [error, setError] = useState('');
+  const adminToken = localStorage.getItem('adminToken');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,6 +69,7 @@ const AddProductPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`,
         },
         body: JSON.stringify(productData), // Send data as JSON
         credentials: 'include'
