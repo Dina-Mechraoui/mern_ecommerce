@@ -64,7 +64,7 @@ const AddProductPage = () => {
 
     try {
       // Convert the product data to the format expected by the server
-      const response = await fetch('${apiUrl}/api/product/addProduct', {
+      const response = await fetch(`${apiUrl}/api/product/addProduct`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
