@@ -9,7 +9,6 @@ const ProductDetailsPage = () => {
 
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
-  const { addToCart } = useCart();
 
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
@@ -82,38 +81,72 @@ const ProductDetailsPage = () => {
   const options = getAvailableOptions(data, selectedSize, selectedColor);
   const { sizes, colors, maxQuantity } = options;
 
-  const handleAddToCart = async () => {
-    console.log("Button clicked");
-    const cartItem = {
-      productId: data._id,
-      size: selectedSize,
-      color: selectedColor,
-      quantity: Number(quantity),
-      price: data.price,
-    };
+  // const handleAddToCart = async () => {
+  //   console.log("Button clicked");
+  //   const cartItem = {
+  //     productId: data._id,
+  //     size: selectedSize,
+  //     color: selectedColor,
+  //     quantity: Number(quantity),
+  //     price: data.price,
+  //   };
   
-    console.log("Cart Item Payload:", cartItem);
+  //   console.log("Cart Item Payload:", cartItem);
   
-    try {
-      const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cartItem),
-        credentials: "include",
-      });
+  //   try {
+  //     const response = await fetch(`${apiUrl}/api/cart/addToCart`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(cartItem),
+  //       credentials: "include",
+  //     });
   
-      console.log("Response:", response);
+  //     console.log("Response:", response);
   
-      if (!response.ok) throw new Error("Failed to add to cart");
+  //     if (!response.ok) throw new Error("Failed to add to cart");
   
-      const result = await response.json();
-      console.log(result)
-    // window.location.reload()
+  //     const result = await response.json();
+  //     console.log(result)
+  //   // window.location.reload()
   
-    } catch (error) {
-      console.error("Error adding to cart:", error);
+  //   } catch (error) {
+  //     console.error("Error adding to cart:", error);
+  //   }
+  // };
+  
+  const handleAddToCart = (productId, size, color, quantity, price) => {
+    // Retrieve current cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    // Create a cart item object
+    const cartItem = { productId, size, color, quantity, price };
+  
+    // Check if the item already exists in the cart
+    const existingItemIndex = cart.findIndex(item => 
+      item.productId === productId && item.size === size && item.color === color
+    );
+  
+    if (existingItemIndex > -1) {
+      // If the item exists, increase the quantity
+      cart[existingItemIndex].quantity += quantity;
+    } else {
+      // If the item doesn't exist, add a new item to the cart
+      cart.push(cartItem);
     }
+  
+    // Save updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+  
+    // Optionally, update UI state (e.g., cart count)
+    updateCartCount();
   };
+  
+  // Helper function to update cart count
+  // const updateCartCount = () => {
+  //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  //   const count = cart.reduce((total, item) => total + item.quantity, 0);
+  //   setCartCount(count);  // assuming setCartCount is your state handler
+  // };
   
   const handleSizeSelection = (size) => {
     setSelectedSize(size === selectedSize ? null : size);
