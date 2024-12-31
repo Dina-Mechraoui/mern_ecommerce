@@ -13,7 +13,9 @@ const ManageOrders = () => {
     setLoading(true);
     try {
       const response = await fetch(`${apiUrl}/api/orders`, {
-        headers: `Bearer ${adminToken}`
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+        },
       });
       if (!response.ok) {
         throw new Error("Failed to fetch orders");
