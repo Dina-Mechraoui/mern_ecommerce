@@ -13,7 +13,7 @@ const addProduct = async (req, res) => {
         if (req.files) {
             console.log("Received files:", req.files);
             req.files.forEach((file) => {
-                imageLinks.push(file.path); // Store the Cloudinary URLs
+                imageLinks.push(file.path);
             });
         } else {
             console.log("No files received.");
@@ -52,6 +52,7 @@ const addProduct = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 
 const deleteProduct = async (req, res) => {
