@@ -30,6 +30,8 @@ const AdminProductsPage = () => {
       ],
     },
   ];
+  console.log(localStorage.getItem("adminToken", data.token))
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
