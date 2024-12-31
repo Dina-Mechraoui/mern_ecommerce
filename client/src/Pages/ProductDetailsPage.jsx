@@ -23,7 +23,8 @@ const ProductDetailsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error?.message}</div>;
   if (!data) return <div>No product found.</div>;
-  const incrementCart = () => setCartCount(cartCount + quantity);
+  const incrementCart = () => setCartCount(prevCount => prevCount + quantity);
+
 
   const isPromotionActive = data.promotion?.startDate && data.promotion?.endDate &&
     new Date() >= new Date(data.promotion.startDate) && new Date() <= new Date(data.promotion.endDate);
