@@ -1,29 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
 import CloseIcon from '@mui/icons-material/Close';
 
 const CartItem = ({ cartItem }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${cartItem.productId}`);
-  
+
   // Function to handle removal from localStorage
   const handleRemoveFromCart = () => {
-    // Get the current cart from localStorage
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    localStorage.setItem('cartCount', cartCount - cartItem.quantity);
-    // Remove the item from the cart
-    const updatedCart = storedCart.filter(
-      (item) =>
-        item.productId !== cartItem.productId ||
-        item.size !== cartItem.size ||
-        item.color !== cartItem.color
-    );
+    try {
+      // Get the current cart from localStorage
+      const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Remove the item from the cart
+      const updatedCart = storedCart.filter(
+        (item) =>
+          item.productId !== cartItem.productId ||
+          item.size !== cartItem.size ||
+          item.color !== cartItem.color
+      );
 
-    // Save the updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
-    // Optionally trigger a re-render if you want to update the UI immediately
-    window.location.reload();  // This reloads the page to reflect the updated cart
+      // Update the cartCount based on the updated cart
+      const updatedCartCount = updatedCart.reduce((count, item) => count + item.quantity, 0);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      localStorage.setItem('cartCount', updatedCartCount);
+
+      // Log to check if the updates are happening correctly
+      console.log('Updated Cart:', updatedCart);
+      console.log('Updated Cart Count:', updatedCartCount);
+
+      // Optionally trigger a re-render if you want to update the UI immediately
+      window.location.reload();  // This reloads the page to reflect the updated cart
+    } catch (err) {
+      console.error('Error updating cart in localStorage:', err);
+    }
   };
 
   if (loading) {
@@ -42,6 +52,7 @@ const CartItem = ({ cartItem }) => {
     <div className="flex items-center space-x-4 border-2 p-2 w-full rounded-md">
       <img
         src={data.images[0]}
+        alt={data.name}
         className="h-16 w-16 object-cover rounded"
       />
       <div className="flex flex-col w-full">
