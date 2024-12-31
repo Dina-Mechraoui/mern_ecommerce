@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 const AddProductPage = () => {
   const [productData, setProductData] = useState({
@@ -18,7 +17,6 @@ const AddProductPage = () => {
 
   const apiUrl = import.meta.env.VITE_API_URL;
   const [error, setError] = useState('');
-  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +78,6 @@ const AddProductPage = () => {
       }
 
       // Redirect to the product list page on success
-      history.push('/admin/products');
     } catch (error) {
       setError('Error adding product: ' + error.message);
     }
