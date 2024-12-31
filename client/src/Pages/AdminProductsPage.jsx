@@ -30,6 +30,25 @@ const AdminProductsPage = () => {
     fetchProducts();
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
+  const handleDelete = async (productId) => {
+    try {
+      const response = await fetch(`${apiUrl}/api/product/deleteProduct/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+        },
+      });
+
+      if (response.ok) {
+        // Remove the deleted product from the state
+        window.location.reload()
+      } else {
+        alert('Failed to delete product');
+      }
+    } catch (err) {
+      console.error('Error deleting product:', err);
+    }
+  };
   // If loading, show a loading message
   if (loading) {
     return <div>Loading products...</div>;
