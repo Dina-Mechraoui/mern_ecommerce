@@ -56,36 +56,51 @@ const AddProductPage = () => {
   };
 
   const handleImageChange = (e) => {
+    // Get the selected files and store them directly
     const files = Array.from(e.target.files);
-    const imageUrls = files.map((file) => URL.createObjectURL(file));
-    setProductData({ ...productData, images: imageUrls });
+    setProductData((prevData) => ({
+      ...prevData,
+      images: files, // Store files, not URLs
+    }));
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    const formData = new FormData();
+    
+    // Append all product data to FormData
+    formData.append('name', productData.name);
+    formData.append('price', productData.price);
+    formData.append('description', productData.description);
+    formData.append('category', productData.category);
+    formData.append('stock', JSON.stringify(productData.stock));
+    formData.append('promotion', JSON.stringify(productData.promotion));
+    
+    // Append each image file to FormData
+    productData.images.forEach((file) => {
+      formData.append('images', file);
+    });
+  
     try {
-      // Convert the product data to the format expected by the server
       const response = await fetch(`${apiUrl}/api/product/addProduct`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Origin': 'https://kl-collection.vercel.app',
-          'Authorization': `Bearer ${adminToken}`
+          'Authorization': `Bearer ${adminToken}`,
         },
-        body: JSON.stringify(productData), // Send data as JSON
-        credentials: 'include'
+        body: formData, // Send FormData with images
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to add product');
       }
-
-      // Redirect to the product list page on success
+  
+      // Handle success (e.g., redirect or show success message)
     } catch (error) {
       setError('Error adding product: ' + error.message);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -242,16 +257,17 @@ const AddProductPage = () => {
             className="p-2 border border-gray-300 rounded mt-1"
           />
           <div className="mt-2">
-            {productData.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`product-image-${index}`}
-                className="w-24 h-24 object-cover rounded mt-2"
-              />
-            ))}
+  {productData.images.map((image, index) => (
+    <img
+      key={index}
+      src={URL.createObjectURL(image)} // Use temporary URL for preview
+      alt={`product-image-${index}`}
+      className="w-24 h-24 object-cover rounded mt-2"
+    />
+  ))}
+</div>
+
           </div>
-        </div>
 
         {/* Submit */}
         <div className="mb-4">
