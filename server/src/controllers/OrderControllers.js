@@ -2,11 +2,29 @@ import Order from '../models/Order.js'
 
 const addOrder = async (req, res) => {
     try {
-        const { fullName, phone,region, cart,shippingMethod, shippingAddress,totalPrice } = req.body;
-        if (!req.session.cart || req.session.cart.length === 0) {
+        // Log the incoming request body
+        console.log('Received order data:', req.body);
+
+        const { fullName, phone, region, cart, shippingMethod, shippingAddress, totalPrice } = req.body;
+
+        // Log the cart and validate if it's empty
+        if (!cart || cart.length === 0) {
+            console.log('Cart is empty');
             return res.status(400).json({ message: 'Cart is empty' });
         }
 
+        // Log the order details before saving
+        console.log('Creating new order with details:', {
+            fullName,
+            totalPrice,
+            phone,
+            region,
+            cart,
+            shippingAddress,
+            shippingMethod
+        });
+
+        // Create a new order document
         const newOrder = new Order({
             fullName,
             totalPrice,
@@ -15,15 +33,26 @@ const addOrder = async (req, res) => {
             cart,
             shippingAddress,
             shippingMethod
-        })
+        });
+
+        // Save the new order to the database
         await newOrder.save();
-        req.session.cart = [];
+        console.log('Order saved successfully:', newOrder);
+
+        // Optionally, clear the session cart (if using session storage)
+        // req.session.cart = [];
+
+        // Log success and send the response
+        console.log('Order placed successfully');
         res.status(201).json({ message: 'Order placed successfully' });
 
     } catch (error) {
+        // Log error details
+        console.error('Error while placing order:', error.message);
         res.status(500).json({ error: error.message });
     }
-}
+};
+
 
 const getOrders = async (req, res)=>{
     try {
