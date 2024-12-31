@@ -77,6 +77,7 @@ const OrderPopup = ({ price, onClose }) => {
       const data = await response.json();
       if (response.ok) {
         localStorage.removeItem('cart');
+        localStorage.setItem('cartCount', 0);
         onClose(); 
         window.location.reload();
       } else {

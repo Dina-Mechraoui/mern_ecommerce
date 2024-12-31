@@ -10,7 +10,7 @@ const CartItem = ({ cartItem }) => {
   const handleRemoveFromCart = () => {
     // Get the current cart from localStorage
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    localStorage.setItem('cartCount', cartCount - cartItem.quantity);
     // Remove the item from the cart
     const updatedCart = storedCart.filter(
       (item) =>
@@ -21,7 +21,7 @@ const CartItem = ({ cartItem }) => {
 
     // Save the updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-
+    
     // Optionally trigger a re-render if you want to update the UI immediately
     window.location.reload();  // This reloads the page to reflect the updated cart
   };
