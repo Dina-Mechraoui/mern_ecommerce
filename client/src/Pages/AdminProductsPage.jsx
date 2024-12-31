@@ -1,37 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const AdminProductsPage = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'Product A',
-      price: 100,
-      stock: [
-        { size: 'S', quantity: 10, color: 'Red' },
-        { size: 'M', quantity: 5, color: 'Blue' },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Product B',
-      price: 200,
-      stock: [
-        { size: 'L', quantity: 7, color: 'Green' },
-        { size: 'XL', quantity: 3, color: 'Black' },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Product C',
-      price: 300,
-      stock: [
-        { size: 'M', quantity: 15, color: 'Yellow' },
-      ],
-    },
-  ];
-  console.log(localStorage.getItem('adminToken'))
+  const [products, setProducts] = useState([]); // State to store products
+  const [loading, setLoading] = useState(true);  // Loading state
+  const [error, setError] = useState(null);      // Error state
+  const apiUrl = import.meta.env.VITE_API_URL;
+  // Fetch products from the backend using fetch
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Replace this URL with your actual API endpoint
+        const response = await fetch('${apiUrl}/api/product/getProducts');
+        
+        // Check if the response is successful
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
 
+        const data = await response.json();
+        setProducts(data);  // Set products to the fetched data
+        setLoading(false);   // Set loading to false once data is fetched
+      } catch (err) {
+        setError('Error fetching products');  // Set error message if fetch fails
+        setLoading(false);  // Stop loading even if there's an error
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array means this effect runs once when the component mounts
+
+  // If loading, show a loading message
+  if (loading) {
+    return <div>Loading products...</div>;
+  }
+
+  // If error, show an error message
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -110,8 +117,8 @@ const AdminProductsPage = () => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-100">
-                  <td className="border p-2">{product.id}</td>
+                <tr key={product._id} className="hover:bg-gray-100">
+                  <td className="border p-2">{product._id}</td>
                   <td className="border p-2">{product.name}</td>
                   <td className="border p-2">${product.price}</td>
                   <td className="border p-2">
