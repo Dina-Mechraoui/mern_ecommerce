@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const adminAuth = (req, res, next) => {
-    const token = req.header('Authorization');
+    const token = req.header('Authorization')?.split(' ')[1];
 
     if (!token) {
         return res.status(401).json({ message: 'Access denied. No token provided' });

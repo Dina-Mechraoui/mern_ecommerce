@@ -71,7 +71,7 @@ const AddProductPage = () => {
         headers: {
           'Content-Type': 'application/json',
           'Origin': 'https://kl-collection.vercel.app',
-          'Authorization': `${adminToken}`
+          'Authorization': `Bearer ${adminToken}`
         },
         body: JSON.stringify(productData), // Send data as JSON
         credentials: 'include'
