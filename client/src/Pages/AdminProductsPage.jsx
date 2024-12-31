@@ -157,7 +157,7 @@ const AdminProductsPage = () => {
                     <button className="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded mr-2">
                       Edit
                     </button>
-                    <button className="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded">
+                    <button className="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded" onClick={()=>handleDelete(product._id)}>
                       Delete
                     </button>
                   </td>
