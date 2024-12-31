@@ -11,7 +11,7 @@ const AdminProductsPage = () => {
     const fetchProducts = async () => {
       try {
         // Replace this URL with your actual API endpoint
-        const response = await fetch('${apiUrl}/api/product/getProducts');
+        const response = await fetch(`${apiUrl}/api/product/getProducts`);
         
         // Check if the response is successful
         if (!response.ok) {
