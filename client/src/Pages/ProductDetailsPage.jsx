@@ -114,16 +114,23 @@ const ProductDetailsPage = () => {
   //   }
   // };
   
-  const handleAddToCart = (productId, size, color, quantity, price) => {
+  const handleAddToCart = () => {
     // Retrieve current cart from localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
     // Create a cart item object
-    const cartItem = { productId, size, color, quantity, price };
+    const cartItem = {
+      productId: data._id,
+      name: data.name,
+      quantity: Number(quantity),
+      price: discountPrice, // using the discount price
+      size: selectedSize,
+      color: selectedColor
+    };
   
     // Check if the item already exists in the cart
     const existingItemIndex = cart.findIndex(item => 
-      item.productId === productId && item.size === size && item.color === color
+      item.productId === data._id && item.size === selectedSize && item.color === selectedColor
     );
   
     if (existingItemIndex > -1) {
@@ -138,15 +145,16 @@ const ProductDetailsPage = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
   
     // Optionally, update UI state (e.g., cart count)
-    updateCartCount();
+    // updateCartCount();
   };
   
-  // Helper function to update cart count
+  
   // const updateCartCount = () => {
   //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   //   const count = cart.reduce((total, item) => total + item.quantity, 0);
   //   setCartCount(count);  // assuming setCartCount is your state handler
   // };
+  
   
   const handleSizeSelection = (size) => {
     setSelectedSize(size === selectedSize ? null : size);
