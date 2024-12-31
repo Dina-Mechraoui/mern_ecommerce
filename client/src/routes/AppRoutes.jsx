@@ -10,9 +10,6 @@ import ProductDetailsPage from '../Pages/ProductDetailsPage';
 
 const AppRoutes = () => {
     return (
-    <>
-      <NavBar/>
-      <ScrollToHash/>
       <main className="flex-grow flex">
         <div className="flex-grow w-full">
             <Routes>
@@ -22,9 +19,7 @@ const AppRoutes = () => {
                 <Route path="/cart" element={<CartPage/>} />
             </Routes>
         </div>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 };
 
