@@ -72,6 +72,7 @@ const AddProductPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(productData), // Send data as JSON
+        credentials: 'include'
       });
 
       if (!response.ok) {
