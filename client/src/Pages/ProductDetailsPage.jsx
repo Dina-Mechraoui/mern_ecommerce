@@ -1,16 +1,14 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
-import useCart from "../hooks/useCart";
 import Button from "../components/common/Button";
-import useCartContext from "../contexts/CartContext";
+import useCartCount from "../hooks/useCartCount";
 const ProductDetailsPage = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
-
-  const {setCartCount } = useCartContext();
+  const [cartCount, setCartCount] = useCartCount();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
@@ -25,6 +23,7 @@ const ProductDetailsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error?.message}</div>;
   if (!data) return <div>No product found.</div>;
+  const incrementCart = () => setCartCount(cartCount + quantity);
 
   const isPromotionActive = data.promotion?.startDate && data.promotion?.endDate &&
     new Date() >= new Date(data.promotion.startDate) && new Date() <= new Date(data.promotion.endDate);
@@ -144,16 +143,10 @@ const ProductDetailsPage = () => {
   
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-  
-    updateCartCount();
+    
+    incrementCart()
   };
   
-  
-  const updateCartCount = () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const count = cart.reduce((total, item) => total + item.quantity, 0);
-    setCartCount(count);
-  };
   
   
   const handleSizeSelection = (size) => {

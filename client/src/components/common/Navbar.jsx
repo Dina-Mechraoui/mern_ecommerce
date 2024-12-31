@@ -8,14 +8,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import Divider from '@mui/material/Divider';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import useCartContext from "../../hooks/useCartContext";
+import useCartCount from "../../hooks/useCartCount";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); 
   const apiUrl = import.meta.env.VITE_API_URL;
-  const { cartCount } = useCartContext();
+  const [cartCount, setCartCount] = useCartCount();
 
   useEffect(() => {
     if (location.pathname !== "/") {
