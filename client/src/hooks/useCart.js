@@ -5,7 +5,7 @@ const useCart = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const apiUrl = import.meta.env.VITE_API_URL;
-
+    console.log(apiUrl)
 
     const addToCart = async (item) => {
         try {
