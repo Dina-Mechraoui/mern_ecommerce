@@ -3,13 +3,14 @@ import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import useCart from "../hooks/useCart";
 import Button from "../components/common/Button";
-
+import { useCartContext } from "../contexts/CartContext";
 const ProductDetailsPage = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const { id } = useParams();
   const { data, loading, error } = useFetch(`${apiUrl}/api/product/getProduct/${id}`);
 
+  const { cartCount, setCartCount } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
@@ -144,16 +145,15 @@ const ProductDetailsPage = () => {
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
   
-    // Optionally, update UI state (e.g., cart count)
-    // updateCartCount();
+    updateCartCount();
   };
   
   
-  // const updateCartCount = () => {
-  //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  //   const count = cart.reduce((total, item) => total + item.quantity, 0);
-  //   setCartCount(count);  // assuming setCartCount is your state handler
-  // };
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    setCartCount(count);
+  };
   
   
   const handleSizeSelection = (size) => {

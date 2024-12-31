@@ -6,15 +6,16 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import CloseIcon from '@mui/icons-material/Close';
 import Divider from '@mui/material/Divider';
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { useCartContext } from "../../contexts/CartContext";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation(); 
   const apiUrl = import.meta.env.VITE_API_URL;
+  const { cartCount } = useCartContext();
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -67,7 +68,7 @@ const NavBar = () => {
           <li className={`${location.pathname === "/" ? "font-bold  border-b-2 border-[#FF8A3E]" : ""}`}><a href="/">Home</a></li>
           <li className={`${location.pathname === "/products" ? "font-bold border-b-2 border-[#FF8A3E]" : ""}`}><a href="/products">All products</a></li>
           <li ><Link to="/#contact-us">Contact Us</Link></li>
-          <li className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{data.count}</div></a></li>
+          <li className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{cartCount}</div></a></li>
         </ul>
       </nav>
 
@@ -79,7 +80,7 @@ const NavBar = () => {
         <div className="text-center font-AbrilFatface leading-none">
           <h1 className="text-4xl m-0"><a href="/">kl</a></h1>
         </div>
-        <div className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{data.count}</div></a></div>
+        <div className={`${location.pathname === "/cart" ? "text-[#FF8A3E]" : ""} relative`}> <a href="/cart"><ShoppingCartIcon/><div className={`${data.count === 0 ? "hidden" : `${location.pathname === "/cart" ? "bg-white border-orange-500 border-[1px]" : "text-white"} w-4 h-4 bg-[#FF8A3E] rounded-xl absolute text-[10px] flex items-center justify-center -bottom-1 -right-1`}`}>{cartCount}</div></a></div>
       </nav>
 
       {isOpen && (
