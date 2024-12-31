@@ -9,12 +9,12 @@ import Button from '../common/Button';
 import { Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const OrderPopup = ({ cartItems, price, onClose }) => {
+const OrderPopup = ({ price, onClose }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
-    region:'',
+    region: '',
     shippingMethod: '',
     shippingAddress: '',
   });
@@ -36,13 +36,11 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
   }
 
   const regions = data?.regions || [];
-  
+
   const selectedRegion = regions.find(region => region.name === formData.region);
   const selectedShippingRate = selectedRegion?.shippingRate.find(rate => rate.type === formData.shippingMethod);
 
   const totalPrice = price + (selectedShippingRate?.price || 0);
-
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,23 +53,33 @@ const OrderPopup = ({ cartItems, price, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Retrieve cart data from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Prepare the order payload
+    const orderData = {
+      fullName: formData.fullName,
+      phone: formData.phone,
+      region: formData.region,
+      shippingMethod: formData.shippingMethod,
+      shippingAddress: formData.shippingAddress,
+      totalPrice,
+      cart: cartItems,  // Include cart items from localStorage
+    };
+
     try {
       const response = await fetch(`${apiUrl}/api/order/addOrder`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Origin': 'https://kl-collection-2bfskr00f-dina-mechraouis-projects.vercel.app' },
-        body: JSON.stringify({
-          ...formData,
-          totalPrice
-        }),
-        credentials: 'include'
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
       });
       const data = await response.json();
       if (response.ok) {
         onClose(); 
-        window.location.reload();
+        window.location.reload(); // Reload the page to reflect the order
       } else {
         setError(data.message || 'An error occurred');
-        console.log(data.message)
       }
     } catch (err) {
       setError(err.message);

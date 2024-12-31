@@ -12,7 +12,7 @@ const addOrder = async (req, res) => {
             totalPrice,
             phone,
             region,
-            cart: req.session.cart,
+            cart,
             shippingAddress,
             shippingMethod
         })

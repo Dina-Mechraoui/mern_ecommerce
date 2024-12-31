@@ -10,6 +10,7 @@ const useCartCount = () => {
   useEffect(() => {
     // Update localStorage whenever cartCount changes
     localStorage.setItem('cartCount', cartCount);
+    console.log(localStorage.getItem('cartCount'))
   }, [cartCount]);
 
   return [cartCount, setCartCount];
