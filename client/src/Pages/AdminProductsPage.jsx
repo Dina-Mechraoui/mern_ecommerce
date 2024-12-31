@@ -6,6 +6,7 @@ const AdminProductsPage = () => {
   const [loading, setLoading] = useState(true);  // Loading state
   const [error, setError] = useState(null);      // Error state
   const apiUrl = import.meta.env.VITE_API_URL;
+  const adminToken = localStorage.getItem('adminToken');
   // Fetch products from the backend using fetch
   useEffect(() => {
     const fetchProducts = async () => {

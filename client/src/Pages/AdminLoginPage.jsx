@@ -24,9 +24,7 @@ const AdminLogin = () => {
 
       if (response.ok) {
         localStorage.setItem("adminToken", data.token);
-        console.log(localStorage.getItem('adminToken'))
-        alert("Login successful!");
-        // window.location.href = "/admin/dashboard";
+        window.location.href = "/admin/dashboard";
       } else {
         setError(data.message || "Invalid email or password");
       }
