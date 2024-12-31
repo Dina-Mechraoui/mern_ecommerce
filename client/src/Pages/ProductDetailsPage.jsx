@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { useState, useEffect } from "react";
 import useCart from "../hooks/useCart";
 import Button from "../components/common/Button";
-import { useCartContext } from "../contexts/CartContext";
+import useCartContext from "../contexts/CartContext";
 const ProductDetailsPage = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
