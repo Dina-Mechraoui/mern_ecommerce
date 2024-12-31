@@ -1,3 +1,6 @@
+
+
+
 import { useState, useEffect } from "react";
 
 const ManageOrders = () => {
@@ -8,15 +11,16 @@ const ManageOrders = () => {
   const [error, setError] = useState(null);
   const adminToken = localStorage.getItem('adminToken');
 
+
   // Fetch orders from the API
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/order/getOrders`, {
-        headers: {
-          'Authorization': `Bearer ${adminToken}`,
-        },
-      });
+        const response = await fetch(`${apiUrl}/api/order/getOrders`, {
+            headers: {
+              'Authorization': `Bearer ${adminToken}`,
+            },
+          });
       if (!response.ok) {
         throw new Error("Failed to fetch orders");
       }
@@ -29,6 +33,7 @@ const ManageOrders = () => {
     }
   };
 
+  // Fetch orders when the component is mounted
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -43,19 +48,33 @@ const ManageOrders = () => {
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className="border p-2">Order ID</th>
             <th className="border p-2">Customer Name</th>
             <th className="border p-2">Total Price</th>
             <th className="border p-2">Status</th>
+            <th className="border p-2">Cart</th>
+            <th className="border p-2">Shipping Method</th>
+            <th className="border p-2">Phone</th>
+            <th className="border p-2">Region</th>
+            <th className="border p-2">Shipping Address</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <td className="border p-2">{order._id}</td>
               <td className="border p-2">{order.fullName}</td>
               <td className="border p-2">{order.totalPrice} DA</td>
               <td className="border p-2">{order.status || 'Pending'}</td>
+              <td className="border p-2">
+                {order.cart.map((item, index) => (
+                  <div key={index}>
+                    {item.name} (x{item.quantity})
+                  </div>
+                ))}
+              </td>
+              <td className="border p-2">{order.shippingMethod}</td>
+              <td className="border p-2">{order.phone}</td>
+              <td className="border p-2">{order.region}</td>
+              <td className="border p-2">{order.shippingAddress}</td>
             </tr>
           ))}
         </tbody>
