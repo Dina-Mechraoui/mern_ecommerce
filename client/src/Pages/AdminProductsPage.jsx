@@ -87,19 +87,19 @@ const AdminProductsPage = () => {
             </li>
             <li>
               <Link
-                to="/admin/orders"
+                to="/admin/manageOrders"
                 className="block px-4 py-2"
               >
                 Manage Orders
               </Link>
             </li>
             <li>
-              <Link
+              {/* <Link
                 to="/admin/settings"
                 className="block px-4 py-2"
               >
                 Settings
-              </Link>
+              </Link> */}
             </li>
           </ul>
         </nav>

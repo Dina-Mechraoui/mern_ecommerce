@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
 const ManageOrders = () => {
-  const apiUrl = import.meta.env.VITE_API_URL; // Your API base URL
+  const apiUrl = import.meta.env.VITE_API_URL;
   const adminToken = localStorage.getItem('adminToken')
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch orders from the API
   const fetchOrders = async () => {
     setLoading(true);
     try {

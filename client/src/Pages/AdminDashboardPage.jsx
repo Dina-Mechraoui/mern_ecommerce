@@ -29,7 +29,7 @@ const AdminDashboard = () => {
             </li>
             <li>
               <Link
-                to="/admin/orders"
+                to="/admin/manageOrders"
                 className="block px-4 py-2 hover:bg-gray-700"
               >
                 Manage Orders
